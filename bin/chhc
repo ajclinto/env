@@ -1,0 +1,41 @@
+#!/bin/csh -f
+
+if ( $#argv == 0) then
+	exec echo '#'
+endif
+
+set prev_file = ""
+if ( $#argv == 2 ) then
+	set prev_file = $2
+endif
+
+set suffix = $1:e
+set   base = $1:r
+set target = $1
+
+switch ( "$suffix" )
+	case "h":
+		set target = ${base}.C
+		if ( ! -f $target ) set target = ${base}.c
+		if ( ! -f $target ) set target = ${base}.cpp
+		if ( ! -f $target ) set target = ${base}.cc
+		breaksw
+
+	case "c":
+	case "C":
+	case "cpp":
+	case "cc":
+		set target = ${base}.H
+		if ( ! -f $target ) set target = ${base}.h
+		if ( ! -f $target ) set target = ${base}.hpp
+		breaksw
+
+endsw
+
+if ( ! -f $target ) set target = $1
+
+if ( "$target" == "$prev_file" ) then
+	set target = '#'
+endif
+
+exec echo $target

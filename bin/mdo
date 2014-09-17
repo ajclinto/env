@@ -10,16 +10,37 @@ set base = $1:r
 set ext = $1:e
 
 switch ( $ext )
+    case "pdf":
+	evince $1 &
+	breaksw;
+
     case "dot":
 	zgrviewer $1 &
 	breaksw;
 
-    case "pdf":
-	okular $1 &
+    case "doc":
+    case "docx":
+	oocalc $1 &
+	breaksw;
+
+    case "ods":
+	oocalc $1 &
+	breaksw;
+
+    case "pptx":
+    case "ppt":
+	ooimpress $1 &
+	breaksw;
+
+    case "txt":
+    case "rpt":
+	gedit $1 &
 	breaksw;
 
     default:
+
 	# Set the number of processors
+	#set MAKEOPTS = -j`cat /proc/cpuinfo | awk '/^processor/ {count++} END { printf("%d", count); }'`
 	set MAKEOPTS = -j`cat /proc/cpuinfo | awk '/^processor/ {count++} END { printf("%d", count); }'` PIN_ROOT=$PIN_ROOT
 
 	make $MAKEOPTS

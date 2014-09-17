@@ -15,6 +15,7 @@ import sys, os
 # ensure that there are leading tabs.  The only other acceptable value
 # would be 4.
 ARGUMENT_INDENT = 4
+TAB_WIDTH = 4
 
 _keywords = {
     'const'		: True,
@@ -36,7 +37,7 @@ def countSpace(line):
 	if i == ' ':
 	    indent += 1
 	elif i == '\t':
-	    indent += 4 - indent%4
+	    indent += TAB_WIDTH - indent%TAB_WIDTH
 	else:
 	    break
     return indent
@@ -72,9 +73,9 @@ def splitDeclaration(line):
 
 def makeIndent(n):
     s = ''
-    while n >= 4:
+    while n >= TAB_WIDTH:
 	s += TAB
-	n -= 4
+	n -= TAB_WIDTH
     s += ' '*n
     return s
 
@@ -92,9 +93,9 @@ def declIndent(indent, dlen, slen, stars, decl):
     if end == start+1:
 	return ' '
     result = ''
-    while start/4 < end/4:
+    while start/TAB_WIDTH < end/TAB_WIDTH:
 	result += TAB
-	start += 4 - start%4
+	start += TAB_WIDTH - start%TAB_WIDTH
     result += ' '*(end - start)
     return result
 

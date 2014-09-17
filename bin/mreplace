@@ -1,0 +1,16 @@
+#!/bin/bash
+for file in `find . -name \*.h -o -name \*.cpp`
+do
+    sed \
+		-e 's/search_for/replace_with/g' \
+		$file > $file.new
+	if ! diff $file $file.new > /dev/null; then
+		echo $file
+		if ! [ -w $file ]; then
+			p4 edit $file
+		fi
+		mv $file.new $file
+	else
+		rm $file.new
+	fi
+done

@@ -1,0 +1,19 @@
+set editing-mode vi
+set enable-keypad on
+
+set keyseq-timeout 500
+
+TAB: menu-complete
+
+$if mode=vi
+
+set keymap vi-command
+# these are for vi-command mode
+"df": "dw"
+"f": "w"
+
+set keymap vi-insert
+# these are for vi-insert mode
+#DEL: vi-movement-mode
+
+$endif

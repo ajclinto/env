@@ -1,0 +1,15 @@
+#!/bin/csh -f
+
+if ($#argv != 1 ) then
+    echo 'Usage: makeglimpse <src-root>'
+    exit
+endif
+
+cd $1
+
+# -n: index numbers
+# -B: use a hash table 4 times bigger (256KB)
+# -M: memory for temp tables in MB
+# -o: build small index
+# -F: read the list of files from stdin
+/usr/local/bin/glimpseindex -n -B -M 1000 -o -H $1 $1

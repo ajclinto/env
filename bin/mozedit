@@ -1,0 +1,3 @@
+#!/bin/csh -f
+
+gnome-terminal --geometry=80x40 --window-with-profile=Default --disable-factory -x vim $1

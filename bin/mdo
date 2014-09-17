@@ -1,0 +1,27 @@
+#!/bin/tcsh -f
+#
+# Script to make a .o given the .C or .h filename.
+#
+if ( $#argv == 0 ) then
+    exec echo '#'
+endif
+
+set base = $1:r
+set ext = $1:e
+
+switch ( $ext )
+    case "dot":
+	zgrviewer $1 &
+	breaksw;
+
+    case "pdf":
+	okular $1 &
+	breaksw;
+
+    default:
+	# Set the number of processors
+	set MAKEOPTS = -j`cat /proc/cpuinfo | awk '/^processor/ {count++} END { printf("%d", count); }'` PIN_ROOT=$PIN_ROOT
+
+	make $MAKEOPTS
+	breaksw;
+endsw

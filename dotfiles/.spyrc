@@ -1,0 +1,58 @@
+#include /ufs/prisms/support/hi/help/Advanced/.hirc
+map <Enter>	redraw
+map f	unix	file %
+map m	unix	make -j4 PIN_ROOT=$PIN_ROOT
+map G	unix	git log %
+map C	unix	rm core*
+map s	setenv
+map x	unix	gdb ./spy core
+map c	prompt_silent	cd
+map e	debugmode
+
+map ;	unix_cmd
+map g	jump
+map r	pagedown
+map t	pageup
+
+#map 1	jump	=~/projects/cs488project/src
+#map 2	jump	=~/projects/repo/llvm/include/llvm
+#map 3	jump	=~/projects/repo/llvm/lib
+
+#map 1	jump	=~/projects/memview
+#map 2	jump	=~/projects/repo/valgrind/memview
+#map 3	jump	=~
+#map 4	jump	=~/qt-everywhere-opensource-src-4.7.4/examples/opengl
+#map 5	jump	=~/Desktop
+
+map 1	jump	=~/projects/spy
+map 2	jump	=~/altera/13.1/
+map 3	jump	=~
+map 5	jump	=~/Desktop
+
+#map 1	jump	=~/povray-bsp-1.03/source
+#map 2	jump	=~/povray-bsp-1.02/src
+#map 3	jump	=~/povray-3.6.1/source
+#map 4	jump	=~/povray-3.50c/src
+#map 5	jump	=~/povray-3.6.1/scenes/advanced/blocks
+#map 6	jump	=~/patchRelease/v1.02/src
+
+map o	ignoretoggle	=objects
+map a	ignoretoggle	=dotfiles
+
+map y	detailtoggle
+
+relaxprompt
+relaxsearch
+relaxcase
+
+ignoremask *.o objects
+ignoremask .*  dotfiles
+
+ignoredefault objects 1
+ignoredefault dotfiles 1
+
+# blue black red purple cyan white green yellow
+#map C colortoggle
+color -dir yellow
+color -x green
+color -ro purple

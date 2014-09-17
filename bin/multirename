@@ -1,0 +1,5 @@
+#!/bin/sh
+for file in `ls *.[hC]`
+do
+    mv $file.new $file
+done

@@ -8,7 +8,7 @@ map G	unix	git log %
 #map G	unix	p4 filelog -l % | less
 map C	unix	rm core*
 map s	setenv
-map x	unix	gdb ./spy core
+map x	unix	gdb `which spy` core
 map e	debugmode
 map c	prompt_interactive	qcd
 map b	prompt_interactive	rcd
@@ -60,3 +60,4 @@ color -dir yellow
 color -x green
 color -ro purple
 color core blue
+color -link cyan

@@ -3,7 +3,7 @@ set enable-keypad on
 
 set keyseq-timeout 500
 
-TAB: menu-complete
+#TAB: menu-complete
 
 $if mode=vi
 

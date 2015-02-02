@@ -29,43 +29,42 @@ set smartcase
 
 set ruler
 
-map <Right> <ESC>:bn<CR>
-map <Left> <ESC>:bp<CR>
+noremap <Right> <ESC>:bn<CR>
+noremap <Left> <ESC>:bp<CR>
 
 "imap <Up> _
 "cmap <Up> _
 
-map ; :
-map! <Del> <ESC>
+noremap ; :
+inoremap <Del> <ESC>
+inoremap jk <ESC>
 
-map r <C-d>
-map R <C-f>
-map t <C-u>
-map T <C-b>
+noremap r <C-d>
+noremap R <C-f>
+noremap t <C-u>
+noremap T <C-b>
 
-map f w
+noremap f w
 
-map e :e `~/bin/chhc %`<CR>
-"source ~/bin/a.vim
-"map e :A<CR>
-map m :!make -j4 PIN_ROOT=$PIN_ROOT<CR>
-"map m :!mdo %<CR>
+source ~/bin/chhc.vim
+noremap e :exec "e ".Chhc(expand("%"))<CR>
 
-map _ :!iparse<CR>
+noremap m :!make -j4 PIN_ROOT=$PIN_ROOT<CR>
+"noremap m :!mdo %<CR>
 
-map ' :q<CR>
+noremap _ :!iparse<CR>
 
-map <S-Q> gq
+noremap ' :q<CR>
+noremap " :w<CR>
+noremap \ :wq<CR>
+
+noremap <S-Q> gq
 
 " Abbreviations
 iab cst (const char *)
 iab cerx cerr << x << endl;
 iab fpr fprintf(stderr, "\n");<ESC>hhhhi
 iab pr printf("\n");<ESC>hhhhi
-
-" Map arrow keys
-"map <down> <c-e>
-"map <up> <c-y>
 
 " Map make
 "map M :mak -j2<CR><CR>
@@ -78,6 +77,7 @@ iab pr printf("\n");<ESC>hhhhi
 "imap ;k	<Plug>MarkersJumpB
 "map ;k	<Plug>MarkersJumpB
 " imap ;m	<Plug>MarkersMark
+
 let g:c_nl_before_curlyB=0
 let c_no_curly_error=1
 

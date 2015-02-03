@@ -15,11 +15,36 @@ function InList(list, key)
 	return 0
 endfunction
 
+"Get the relative path from absolute path 'from' to absolute path 'to'
+function RelPath(to, from)
+	let to_arr = split(a:to, '/')
+	let from_arr = split(a:from, '/')
+	let i = 0
+	while i < min([len(to_arr), len(from_arr)])
+		if to_arr[i] !=# from_arr[i]
+			break
+		endif
+		let i = i+1
+	endwhile
+	let path = ''
+	let j = i
+	while j < len(from_arr)
+		let path = path . '../'
+		let j = j+1
+	endwhile
+	let j = i
+	while j < len(to_arr)
+		let path = path . to_arr[j] . '/'
+		let j = j+1
+	endwhile
+	return path
+endfunction
+
 function Chhc(arg)
 	let basedir = fnamemodify(a:arg, ":h")
 	let filename = fnamemodify(a:arg, ":t")
-	let base = fnamemodify(a:arg, ":r")
-	let suffix = fnamemodify(a:arg, ":e")
+	let base = fnamemodify(filename, ":r")
+	let suffix = fnamemodify(filename, ":e")
 	"Lists all on one line
 	let csuffixes = [ 'cpp', 'C', 'c', 'cc' ]
 	let hsuffixes = [ 'h', 'H', 'hpp' ]
@@ -37,7 +62,7 @@ function Chhc(arg)
 				let tmp_h = tmp[0]
 				let tmp_c = tmp[1]
 				if tmp_h ==# filename
-					let target = tmp_c
+					let target = ReplaceTarget(target, tmp_c)
 					break
 				endif
 			endfor
@@ -69,12 +94,9 @@ function Chhc(arg)
 					endfor
 				endif
 				if !found
-					" There's no relpath() in vim, so change the current directory to the header directory just to allow us to get the relative path using fnamemodify ":."
-					let habspath = fnamemodify(fnamemodify(target, ":p"), ":h")
+					let habspath = fnamemodify(target, ":p:h")
 					let cabspath = fnamemodify(basedir, ":p")
-					execute ":chdir ".habspath
-					let crelpath = fnamemodify(cabspath, ":~:.")
-					execute ":chdir ".cabspath
+					let crelpath = RelPath(cabspath, habspath)
 					let cpath = crelpath . filename
 					let cmd = printf('echo "%s %s" >> %s', hfile, cpath, dotchhc)
 					let rval = system(cmd)

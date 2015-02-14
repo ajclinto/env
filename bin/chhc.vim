@@ -62,8 +62,8 @@ function Chhc(arg)
 				let tmp_h = tmp[0]
 				let tmp_c = tmp[1]
 				if tmp_h ==# filename
-					let target = ReplaceTarget(target, tmp_c)
-					break
+					let candidate = basedir . '/' . tmp_c
+					let target = ReplaceTarget(target, candidate)
 				endif
 			endfor
 		endif

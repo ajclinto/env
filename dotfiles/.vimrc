@@ -32,9 +32,6 @@ set ruler
 noremap <Right> <ESC>:bn<CR>
 noremap <Left> <ESC>:bp<CR>
 
-"imap <Up> _
-"cmap <Up> _
-
 noremap ; :
 inoremap <Del> <ESC>
 inoremap jk <ESC>
@@ -43,6 +40,11 @@ noremap r <C-d>
 noremap R <C-f>
 noremap t <C-u>
 noremap T <C-b>
+
+noremap <Up> <C-u>
+noremap <Down> <C-d>
+
+"inoremap <Up> _
 
 noremap f w
 
@@ -82,3 +84,6 @@ let g:c_nl_before_curlyB=0
 let c_no_curly_error=1
 
 au BufNewFile,BufRead *.lib set filetype=cpp
+
+" Save last position in file (from /etc/vim/vimrc)
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif

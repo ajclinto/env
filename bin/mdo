@@ -1,4 +1,4 @@
-#!/bin/tcsh -f
+#!/bin/csh -f
 #
 # Script to make a .o given the .C or .h filename.
 #
@@ -20,7 +20,8 @@ switch ( $ext )
 
     case "doc":
     case "docx":
-	oocalc $1 &
+    case "odt":
+	libreoffice $1 &
 	breaksw;
 
     case "ods":

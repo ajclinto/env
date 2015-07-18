@@ -1,8 +1,8 @@
 map <Enter>	redraw
 map f	unix	file %
 map F	unix	diffuse %
-map m	unix	make -j4 PIN_ROOT=$PIN_ROOT
-#map m	unix	mdo %
+#map m	unix	make -j4 PIN_ROOT=$PIN_ROOT
+map m	unix	mdo %
 map G	unix	git log %
 #map G	unix	p4 filelog -l % | less
 map C	unix	rm core*

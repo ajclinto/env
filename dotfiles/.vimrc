@@ -7,6 +7,7 @@ set tabstop=4
 
 set shiftwidth=4
 set softtabstop=4
+set expandtab
 
 "Settings for LLVM
 "set shiftwidth=2
@@ -54,11 +55,13 @@ noremap e :exec "e ".Chhc(expand("%"))<CR>
 noremap m :!make -j4 PIN_ROOT=$PIN_ROOT<CR>
 "noremap m :!mdo %<CR>
 
-noremap _ :!iparse<CR>
+vnoremap _ :!iparse<CR>
 
 noremap ' :q<CR>
 noremap " :w<CR>
 noremap \ :wq<CR>
+
+noremap , :!<CR>
 
 noremap <S-Q> gq
 
@@ -84,6 +87,7 @@ let g:c_nl_before_curlyB=0
 let c_no_curly_error=1
 
 au BufNewFile,BufRead *.lib set filetype=cpp
+au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl set filetype=glsl
 
 " Save last position in file (from /etc/vim/vimrc)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif

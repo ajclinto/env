@@ -29,7 +29,7 @@ map y	detailtoggle
 #map 5	jump	=~/Desktop
 
 map 1	jump	=~/projects/spy
-map 2	jump	=~/altera/13.1/
+map 2	jump	=~/projects/memview
 map 3	jump	=~
 map 5	jump	=~/Desktop
 

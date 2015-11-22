@@ -1,0 +1,8 @@
+mkdir -p ~/bin
+ln -s `pwd`/bin/* ~/bin
+ln -s `pwd`/dotfiles/.bashrc ~/.bashrc
+ln -s `pwd`/dotfiles/.inputrc ~/.inputrc
+ln -s `pwd`/dotfiles/.spyrc ~/.spyrc
+ln -s `pwd`/dotfiles/.vimrc ~/.vimrc
+mkdir -p ~/.config/diffuse
+ln -s `pwd`/dotfiles/.config/diffuse/* ~/.config/diffuse

@@ -1,2 +1,1 @@
-#!/bin/csh
 diffuse -m $*
